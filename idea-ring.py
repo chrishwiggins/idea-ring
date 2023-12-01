@@ -14,7 +14,7 @@ def extract_ideas_from_line(line):
     """
     
     # Define the delimiters used in the line to separate ideas
-    delimiters = ['.',';', ',', '/', 'and']
+    delimiters = ['.', ';', ',', '/', 'and']
 
     # Replace each delimiter with a common delimiter ('|')
     for delimiter in delimiters:
@@ -31,24 +31,29 @@ with open('datafile.txt', 'r') as file:
         ideas.extend(extract_ideas_from_line(line))
 
 # Convert the list of ideas into embeddings using the sentence-transformers library
+# This helps in understanding the semantic similarity between different ideas
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 embeddings = model.encode(ideas)
 
 # Compute pairwise similarities using Euclidean distance
+# This distance will help in understanding how similar two ideas are
 distances = np.zeros((len(ideas), len(ideas)))
 for i in range(len(ideas)):
     for j in range(len(ideas)):
         distances[i, j] = np.linalg.norm(embeddings[i] - embeddings[j])
 
 # Build a graph where nodes are ideas and edges represent distances between them
+# The goal is to find connections between different ideas based on their similarities
 G = nx.complete_graph(len(ideas))
 for i, j in G.edges():
     G[i][j]['weight'] = distances[i][j]
 
 # Find a path through the graph that visits each idea approximately once
+# This uses a greedy algorithm for solving the Traveling Salesman Problem (TSP)
 path = nx.approximation.greedy_tsp(G, source=0)
 
 # Reorder ideas based on the computed path
+# This creates an ordered sequence of ideas, showing a potential flow of thoughts
 clock_time_ideas = [ideas[idx] for idx in path]
 
 # Calculate the interval between each idea based on the total number of ideas
@@ -57,6 +62,7 @@ total_ideas = len(clock_time_ideas)
 minutes_interval = (12 * 60) // total_ideas
 
 # Assign a unique timestamp to each idea and print the results
+# This creates a schedule or a timeline for exploring these ideas
 current_minutes = 0
 for idea in clock_time_ideas:
     hour = (current_minutes // 60) % 12
