@@ -2,37 +2,39 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import networkx as nx
 
+
 def extract_ideas_from_line(line):
     """
     Extract individual ideas from a given line of text.
-    
+
     Args:
     - line (str): The input line containing ideas separated by delimiters.
-    
+
     Returns:
     - List[str]: A list of ideas extracted from the line.
     """
-    
+
     # Define the delimiters used in the line to separate ideas
-    delimiters = ['.', ';', ',', '/', 'and']
+    delimiters = [".", ";", ",", "/", "and"]
 
     # Replace each delimiter with a common delimiter ('|')
     for delimiter in delimiters:
-        line = line.replace(delimiter, '|')
+        line = line.replace(delimiter, "|")
 
     # Split the line using the common delimiter and return the cleaned ideas
-    return [idea.strip() for idea in line.split('|') if idea.strip()]
+    return [idea.strip() for idea in line.split("|") if idea.strip()]
+
 
 # Read datafile and extract unique ideas
 ideas = []
-with open('datafile.txt', 'r') as file:
+with open("datafile.txt", "r") as file:
     lines = file.readlines()[1:]  # Skip the header
     for line in lines:
         ideas.extend(extract_ideas_from_line(line))
 
 # Convert the list of ideas into embeddings using the sentence-transformers library
 # This helps in understanding the semantic similarity between different ideas
-model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
 embeddings = model.encode(ideas)
 
 # Compute pairwise similarities using Euclidean distance
@@ -46,7 +48,7 @@ for i in range(len(ideas)):
 # The goal is to find connections between different ideas based on their similarities
 G = nx.complete_graph(len(ideas))
 for i, j in G.edges():
-    G[i][j]['weight'] = distances[i][j]
+    G[i][j]["weight"] = distances[i][j]
 
 # Find a path through the graph that visits each idea approximately once
 # This uses a greedy algorithm for solving the Traveling Salesman Problem (TSP)
