@@ -1,6 +1,17 @@
 import numpy as np
 from sentence_transformers import SentenceTransformer
 import networkx as nx
+import argparse
+
+# Argument parser to allow optional file input
+parser = argparse.ArgumentParser(description="Process ideas from an input file.")
+parser.add_argument(
+    "-f",
+    "--file",
+    default="datafile.txt",
+    help="Path to the input file (default: datafile.txt)",
+)
+args = parser.parse_args()
 
 
 def extract_ideas_from_line(line):
@@ -27,7 +38,8 @@ def extract_ideas_from_line(line):
 
 # Read datafile and extract unique ideas
 ideas = []
-with open("datafile.txt", "r") as file:
+# Use the file provided via the command line argument or default to datafile.txt
+with open(args.file, "r") as file:
     lines = file.readlines()[1:]  # Skip the header
     for line in lines:
         ideas.extend(extract_ideas_from_line(line))
