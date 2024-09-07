@@ -8,25 +8,34 @@ from collections import defaultdict, Counter
 import nltk
 from nltk.corpus import stopwords
 
-# Ensure the NLTK tokenizer and stopwords are downloaded
-nltk.download("punkt")  # Tokenizer for splitting text into words
-nltk.download("stopwords")  # Common stopwords like "the", "and", etc.
-stop_words = set(
-    stopwords.words("english")
-)  # Load the stopwords into a set for filtering
+# Ensure NLTK punkt tokenizer and stopwords are downloaded
+nltk.download("punkt")
+nltk.download("stopwords")
+stop_words = set(stopwords.words("english"))
 
-# Step 1: Setup argument parser to accept a file as input
+# Step 1: Setup argument parser to accept a file as input and a seed for reproducibility
 parser = argparse.ArgumentParser(
     description="Cluster and summarize responses from a file."
 )
 parser.add_argument(
-    "-f", "--file", required=True, help="Path to the input file containing responses"
+    "-f",
+    "--file",
+    default="datafile.txt",
+    help="Path to the input file containing responses (default: datafile.txt)",
 )
-args = parser.parse_args()  # Parse command-line arguments
+parser.add_argument(
+    "-s",
+    "--seed",
+    type=int,
+    default=42,
+    help="Random seed for KMeans clustering (default: 42)",
+)
 
-# Step 2: Read the responses from the input file
+# Parse the arguments
+args = parser.parse_args()
+
+# Step 2: Read the responses from the input file (or use default "datafile.txt")
 with open(args.file, "r") as file:
-    # Strip whitespace and ensure only non-empty lines are kept
     responses = [line.strip() for line in file.readlines() if line.strip()]
 
 # Debug: Print the number of responses to verify the file was read correctly
@@ -42,7 +51,9 @@ embeddings = model.encode(responses)  # Convert each response into a vector
 # Step 4: Perform KMeans clustering on the embeddings
 # n_clusters defines how many clusters we want to create (set to 8 here)
 n_clusters = 8  # You can adjust this based on elbow method or other metrics
-kmeans = KMeans(n_clusters=n_clusters)  # Initialize the KMeans algorithm
+kmeans = KMeans(
+    n_clusters=n_clusters, random_state=args.seed
+)  # Initialize KMeans with a specified seed
 kmeans.fit(embeddings)  # Perform the clustering based on the response embeddings
 cluster_labels = kmeans.labels_  # Get the cluster assignment for each response
 
