@@ -42,32 +42,23 @@ with open(args.file, "r") as file:
 print(f"Number of responses: {len(responses)}")
 
 # Step 3: Generate embeddings for each response using a pretrained sentence transformer model
-# The transformer model converts each response into a numerical vector (embedding) that captures its semantic meaning
 model = SentenceTransformer(
     "all-MiniLM-L6-v2"
 )  # A lightweight sentence embedding model
 embeddings = model.encode(responses)  # Convert each response into a vector
 
 # Step 4: Perform KMeans clustering on the embeddings
-# n_clusters defines how many clusters we want to create (set to 8 here)
 n_clusters = 8  # You can adjust this based on elbow method or other metrics
-kmeans = KMeans(
-    n_clusters=n_clusters, random_state=args.seed
-)  # Initialize KMeans with a specified seed
+kmeans = KMeans(n_clusters=n_clusters, random_state=args.seed)
 kmeans.fit(embeddings)  # Perform the clustering based on the response embeddings
 cluster_labels = kmeans.labels_  # Get the cluster assignment for each response
 
 # Step 5: Calculate the overall silhouette score for the clustering
-# Silhouette score ranges from -1 (bad clustering) to 1 (good clustering)
 silhouette_avg = silhouette_score(embeddings, cluster_labels)
-print(
-    f"Average Silhouette Score for all clusters: {silhouette_avg:.2f}"
-)  # Print the overall silhouette score
+print(f"Average Silhouette Score for all clusters: {silhouette_avg:.2f}")
 
 # Step 6: Calculate the silhouette score for each individual response
-silhouette_vals = silhouette_samples(
-    embeddings, cluster_labels
-)  # Calculate silhouette scores for each sample
+silhouette_vals = silhouette_samples(embeddings, cluster_labels)
 
 # Initialize defaultdicts to store responses and their silhouette scores per cluster
 clustered_responses = defaultdict(
@@ -76,6 +67,7 @@ clustered_responses = defaultdict(
 cluster_silhouette = defaultdict(
     list
 )  # Store silhouette scores for each response based on cluster assignment
+cluster_count = defaultdict(int)  # Store the count of responses per cluster (mass)
 
 # Loop through each response, adding it to the appropriate cluster
 for i, label in enumerate(cluster_labels):
@@ -85,6 +77,7 @@ for i, label in enumerate(cluster_labels):
     cluster_silhouette[label].append(
         silhouette_vals[i]
     )  # Add silhouette score to corresponding cluster
+    cluster_count[label] += 1  # Increment the count for this cluster
 
 # Step 7: Calculate the average silhouette score for each cluster
 cluster_avg_silhouette = (
@@ -95,21 +88,24 @@ for cluster_id, silhouette_values in cluster_silhouette.items():
         silhouette_values
     )  # Average silhouette score for each cluster
 
-# Debug: Print the average silhouette score for each cluster
+# Debug: Print the average silhouette score and size for each cluster
 print(f"Cluster silhouette scores: {cluster_avg_silhouette}")
+print(f"Cluster sizes: {cluster_count}")
 
 # Step 8: Sort clusters by their average silhouette score in descending order
 sorted_clusters = sorted(
     cluster_avg_silhouette.items(), key=lambda x: x[1], reverse=True
-)  # Sort clusters from best to worst silhouette score
+)
 
 # Debug: Print the sorted cluster IDs and their average silhouette scores
 print(f"Sorted clusters by silhouette score: {sorted_clusters}")
 
 
 # Step 9: Function to summarize each cluster, including example responses, frequent terms, and silhouette score
-def summarize_cluster(cluster_id, cluster_responses, silhouette_vals):
-    print(f"\n--- Cluster {cluster_id + 1} ---")  # Print cluster ID (1-based indexing)
+def summarize_cluster(cluster_id, cluster_responses, silhouette_vals, cluster_size):
+    print(
+        f"\n--- Cluster {cluster_id + 1} (Size: {cluster_size}) ---"
+    )  # Print cluster ID and size (mass)
     print("\nCluster Summary:")
 
     # Print a few example responses from the cluster (up to 3 responses)
@@ -124,10 +120,8 @@ def summarize_cluster(cluster_id, cluster_responses, silhouette_vals):
         " ".join(cluster_responses).lower()
     )  # Tokenize the responses into words
     word_freq = Counter(
-        [
-            word for word in all_words if word.isalnum() and word not in stop_words
-        ]  # Exclude stopwords and non-alphanumeric terms
-    )
+        [word for word in all_words if word.isalnum() and word not in stop_words]
+    )  # Exclude stopwords and non-alphanumeric terms
 
     # Print the top 10 common terms in the cluster
     common_words = [word for word, freq in word_freq.most_common(10)]
@@ -141,5 +135,8 @@ def summarize_cluster(cluster_id, cluster_responses, silhouette_vals):
 # Step 10: Summarize all clusters in order of descending silhouette score
 for cluster_id, _ in sorted_clusters:
     summarize_cluster(
-        cluster_id, clustered_responses[cluster_id], cluster_silhouette[cluster_id]
+        cluster_id,
+        clustered_responses[cluster_id],
+        cluster_silhouette[cluster_id],
+        cluster_count[cluster_id],
     )  # Summarize each cluster
