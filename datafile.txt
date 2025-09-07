@@ -1,0 +1,65 @@
+
+a bit about applications of generative ai and also the legal implications of using it. 
+a lecture with a clear slide will be great. also cool with some python demonstrations. if need to run python on our own computer, please inform us in advance.
+after listening to the introduction, the music and linguistics sections seem very cool. i would like to hear about ai tools within these contexts. the program that professor wiggins mentioned about python seems interesting as well. i would especially like to see technical aspects explained in a digestible way.
+ai as it relates to cognitive science, how ai can be used in non-technical fields (actual examples). very important for me to apply what i read and learn about.
+ai ethics and user boundaries
+ai supply chain - how the expansion of ai affects the us infrastructure economy 
+applications of ai in science and how it could benefit or detriment research and technology.
+as an financial econ major, i am interested in learning about how ai can make operational processes much more efficient. i am also interested in learning how ai becomes “smart”. how do we train an ai model, while limiting what our model can or cannot know.
+biotech, ai in medicine, computational biology and medicine, just generally the biotech industry and rising needs. i am aiming towards product or business development roles in ai-based biotech and would love to learn more. 
+elon musk's neuralink
+everything generative ai, a lot of cool applications of ai in the modern context, 
+everything outlined in the modules for the course sounds fantastic. i don’t really have anything more that i’d like to hear about.
+evolution of the turing test, and evolution of the concept of intelligence related to computing. 
+generative ai/llms, impact of chip development on training ai models
+history of ai development, legal implications of ai, ai in music 
+honestly, anything concerning ai i'm all ears
+how it became to be such a prevalent thing well most people, me included, do not understand how it works. i also would love to see connections in how the history can help show us what the future could look like or key indicators to look out for. 
+i am especially interesting in understanding the periods of data scale and representation change and how those result in changes of what we understand as "intelligence." has big data in essence changed our understanding (either explicitly or implicitly) of what intelligence is or how we go about evaluating intelligence? also, i am interested in how you think "intelligence" should be vs. will be measured in the future when it comes to humans and then machines. 
+i am interested in the role of ai as it relates to my majors, so its uses and implications in economics and human computer interaction. i think the growth of ai is interesting so i am excited to learn about how it works in a general sense as well. 
+i don't have a clear preference, anything that would give me a better insight into how ai will influence our lives in the next years. 
+i don't have a cs/ai background, so i'm not familiar with colab/python, but as long as it's not extremely technical/doesn't require much prior understanding, that sounds good too
+i just want to hear from you! i'm coming into this class as an econ/political science major, so i have no previous knowledge. 
+i want to learn more about how ai has been applied to real-life scenarios such as healthcare and more so how it came to be.
+i want to learn more about the advancements of technology that led us to ai
+i would be most interested in the legal implications of ai in the entertainment industry and academic context. i would also love to learn more about best practices on ai usage, and how to utilize it as a tool in the real world. i’m also interested in seeing ai’s limitations and potential growth in other fields. 
+i would like to explore and navigate through the history & intelligence of ai. additionally, i want to learn how to solve problems with the help of artificial intelligence (ai) and comprehend how ai works and how it can be effectively utilized.
+i would like to hear about deep fakes, what sources ai uses to produce its outputs and how it learns, what new developments are being worked on within the next year, etc.
+i would like to hear about how artificial intelligence is seen from a philosophical lens. for example, i would like to explore the moral questions that come with topics such as automated weaponry or self-driving cars. additionally, i would like to learn more about the concepts of personhood and liability, considering how these topics pertain to ai.
+i would like to hear about the beginning thought processes behind ai products and how companies evaluate whether or not to invest money into ai backed applications/products. 
+i would like to hear about the historical legislation or role of the government in advancing technologies.
+i would like to hear about what we need to do with ai and like ways that we can use ai in our day-to-day world and how we are going to be able to move with ai now.
+i would like to hear more about how ai is utilized to study the human brain
+i would like to learn about product development jobs in ai companies that are open to non-technical majors/ roles. i would also like to know about ai in the business and consulting world. i want to learn from industry speakers about the current structure/business of the ai industry.
+i would like to learn about the origin of ai.
+i would to hear about the progression of ai in the past few years, and what we should expect to see in the near future as a quickly progressing society.
+i'd love to learn more about the cognitive and psychological assessments of human intelligence and the complexities of comparing it to machine intelligence. additionally, it would also be interesting to explore the history of modeling and integrating human-like intelligence into machines, based on what we've learned from studying human cognition
+i'm honestly a complete beginner, so i suppose the history of ai from its inception until now. i'd also like to learn about key businesses/people who have spurred ai along, and what those people will look like facing the future.
+i'm interested in how ai is shaping language; increasingly, kids and adults rely on ai to write for them and/or aid them through services like grammarly and google doc's ai 'suggestions'; i am interested in how these ai writing tools shape and affect our languages. 
+key breakthrough in ai development
+legal implications of the use of ai
+llm
+llms/impact of chip development progress on training ai models
+maybe a focus on how things quickly picked up in the 90s and early 2000s? with so many industries rendered obsolete overnight due to new advancements, who turned to ai systems as the next big thing, why did they do so, and what steps did they take? at what point did ai become essential to the functioning of society? according to those who were alive at the time, how was ai viewed by general society and how has that view shifted across time?
+origin of ai, how ai works？
+performing arts and its intersection with ai and technology
+philosophy and ai
+real world applications
+really interested in how privacy plays into all of this, from both a technical and legal perspective! also would be cool to discuss social media & how ai may play a role in digital addiction
+symbolic methods (instead of neuron inspired methods)
+the development of the presence of ai in ethics
+the different types of ai (generative ai, future/emerging forms of ai, etc.), the balance of fairness and awarness of ai, opinion in generative ai, ai in human dominated fields and human traits. 
+the ethical implications of ai. 
+the future of ai. what it would mean to live in a ai-centric world, cohabitation with ai beings (subtratism, policy, rights)
+the future or ai and incorporation into entertainment and media. also looking at the ethical and philosophical implications
+the improvements from the first generations/waves of ai to now the latest tech
+the logic and algorithm to build the intelligence
+the progression of artificial intelligence vs human intelligence, and the events that occurred for artificial intelligence to surpass human intelligence.
+the technical evolution of ai and attitudes of different actors during its evolution.
+the topics on the syllabus look interesting to me! i think at this point just developing a very foundational understanding of what machine learning and ai actually are, and how the field has developed. 
+the very origin(s) of intelligence. how it came to be. how it is classified. what exactly is it. from darwin's and aristotle's ideas and discoveries to more recent classifications.
+traditional lectures with student engagement!
+what would you like to hear about?
+when ai "began," and maybe a bit about its evolution over the years
+why do people engage in inventing and developing ai? there are many reasons we can tell, but maybe there's something more inherent or structuring that we've never heard of.
